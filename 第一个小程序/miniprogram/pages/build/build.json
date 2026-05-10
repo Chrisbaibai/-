@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "slot-selector": "/components/slot-selector/slot-selector"
+  },
+  "navigationBarTitleText": "装机方案"
+}

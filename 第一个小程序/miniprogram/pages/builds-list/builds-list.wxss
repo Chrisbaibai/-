@@ -1,0 +1,64 @@
+.page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 20rpx;
+}
+.build-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+.build-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+.build-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+.build-delete {
+  font-size: 24rpx;
+  color: #e74c3c;
+  padding: 8rpx 16rpx;
+}
+.build-price {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #e74c3c;
+  margin: 8rpx 0;
+}
+.build-date {
+  font-size: 22rpx;
+  color: #bbb;
+}
+.empty-state {
+  text-align: center;
+  padding: 120rpx 40rpx;
+}
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 32rpx;
+}
+.empty-btn {
+  display: inline-block;
+  background: #0f3460;
+  color: #fff;
+  padding: 20rpx 48rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+}
+.loading {
+  text-align: center;
+  padding: 100rpx;
+  color: #999;
+}

@@ -1,0 +1,18 @@
+<view class="price-card" bindtap="onTap">
+  <view class="card-body">
+    <view class="card-info">
+      <view class="brand-tag">{{item.brand}}</view>
+      <view class="name">{{item.name}}</view>
+      <view class="specs" wx:if="{{specTags.length > 0}}">
+        <text class="spec-tag" wx:for="{{specTags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+    <view class="card-price">
+      <view class="price">¥{{item.latestPrice}}</view>
+      <view class="change {{priceChange > 0 ? 'price-up' : priceChange < 0 ? 'price-down' : 'price-flat'}}" wx:if="{{priceChange !== 0}}">
+        {{priceChange > 0 ? '↑' : '↓'}}{{priceChange > 0 ? priceChange : -priceChange}}
+      </view>
+      <view class="source">{{item.priceSource}}</view>
+    </view>
+  </view>
+</view>

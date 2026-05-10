@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "category-tabs": "/components/category-tabs/category-tabs",
+    "price-card": "/components/price-card/price-card"
+  },
+  "enablePullDownRefresh": true
+}

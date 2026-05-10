@@ -1,0 +1,28 @@
+<view class="page">
+  <!-- 搜索栏 -->
+  <view class="search-bar" bindtap="onSearchTap">
+    <view class="search-input-placeholder">搜索配件型号...</view>
+  </view>
+
+  <!-- 分类 Tab -->
+  <category-tabs activeKey="{{activeCategory}}" bind:change="onCategoryChange" />
+
+  <!-- 配件列表 -->
+  <view class="list-container">
+    <block wx:if="{{!loading}}">
+      <block wx:if="{{components.length > 0}}">
+        <price-card
+          wx:for="{{components}}"
+          wx:key="_id"
+          item="{{item}}"
+          priceChange="{{item.priceChange || 0}}"
+          bind:tap="onComponentTap"
+        />
+      </block>
+      <view class="empty-tip" wx:else>
+        暂无该分类配件数据
+      </view>
+    </block>
+    <view class="loading" wx:if="{{loading}}">加载中...</view>
+  </view>
+</view>

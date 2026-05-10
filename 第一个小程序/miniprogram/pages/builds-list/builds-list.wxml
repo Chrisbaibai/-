@@ -1,0 +1,20 @@
+<view class="page">
+  <block wx:if="{{!loading}}">
+    <block wx:if="{{builds.length > 0}}">
+      <view class="build-card" wx:for="{{builds}}" wx:key="_id">
+        <view class="build-header">
+          <view class="build-name">{{item.name}}</view>
+          <view class="build-delete" data-id="{{item._id}}" catchtap="onDelete">删除</view>
+        </view>
+        <view class="build-price">¥{{item.totalPrice}}</view>
+        <view class="build-date">{{item.createdAt}}</view>
+      </view>
+    </block>
+    <view class="empty-state" wx:else>
+      <view class="empty-icon"> </view>
+      <view class="empty-text">还没有装机方案</view>
+      <view class="empty-btn" bindtap="onNewBuild">开始装机</view>
+    </view>
+  </block>
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+</view>

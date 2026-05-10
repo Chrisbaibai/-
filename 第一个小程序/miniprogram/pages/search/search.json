@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "price-card": "/components/price-card/price-card"
+  },
+  "navigationBarTitleText": "搜索配件"
+}

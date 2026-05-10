@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/component/detail",
+    "pages/build/build",
+    "pages/builds-list/builds-list",
+    "pages/search/search"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#1a1a2e",
+    "navigationBarTitleText": "硬件价格追踪",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#0f3460",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "今日价格",
+        "iconPath": "images/tab-price.png",
+        "selectedIconPath": "images/tab-price-active.png"
+      },
+      {
+        "pagePath": "pages/build/build",
+        "text": "装机方案",
+        "iconPath": "images/tab-build.png",
+        "selectedIconPath": "images/tab-build-active.png"
+      },
+      {
+        "pagePath": "pages/builds-list/builds-list",
+        "text": "我的方案",
+        "iconPath": "images/tab-my.png",
+        "selectedIconPath": "images/tab-my-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

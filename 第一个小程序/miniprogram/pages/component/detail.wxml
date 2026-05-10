@@ -1,0 +1,41 @@
+<view class="page" wx:if="{{!loading && component}}">
+  <!-- 配件基本信息 -->
+  <view class="header card">
+    <view class="brand-tag">{{component.brand}}</view>
+    <view class="comp-name">{{component.name}}</view>
+    <view class="comp-category">{{component.category}}</view>
+    <view class="comp-price">¥{{component.latestPrice}}</view>
+    <view class="comp-source">数据来源：{{component.priceSource}}</view>
+  </view>
+
+  <!-- 规格参数 -->
+  <view class="card">
+    <view class="section-title">规格参数</view>
+    <view class="spec-list">
+      <view class="spec-row" wx:for="{{specList}}" wx:key="label">
+        <text class="spec-label">{{item.label}}</text>
+        <text class="spec-value">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 价格曲线 -->
+  <view class="card">
+    <view class="section-title">历史价格走势</view>
+    <canvas type="2d" id="priceChart" class="chart-canvas" wx:if="{{chartData.length > 1}}"></canvas>
+    <view class="empty-tip" wx:else>暂无历史价格数据</view>
+  </view>
+
+  <!-- 多平台价格 -->
+  <view class="card" wx:if="{{priceHistory.length > 0}}">
+    <view class="section-title">今日多平台价格</view>
+    <view class="platform-list">
+      <view class="platform-row" wx:for="{{priceHistory[priceHistory.length - 1].prices}}" wx:key="platform">
+        <text class="platform-name">{{item.platform}}</text>
+        <text class="platform-price">¥{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="loading" wx:if="{{loading}}">加载中...</view>

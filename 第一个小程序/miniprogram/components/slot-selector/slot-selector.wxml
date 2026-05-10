@@ -1,0 +1,20 @@
+<view class="slot" bindtap="onTap">
+  <view class="slot-left">
+    <view class="slot-icon">{{icon}}</view>
+    <view class="slot-info">
+      <view class="slot-label">{{label}}</view>
+      <block wx:if="{{selected}}">
+        <view class="slot-name">{{selected.name}}</view>
+        <view class="slot-price">¥{{selected.latestPrice}}</view>
+      </block>
+      <view class="slot-placeholder" wx:else>点击选择{{label}}</view>
+    </view>
+  </view>
+  <view class="slot-right">
+    <view class="remove-btn" wx:if="{{selected}}" catchtap="onRemove">✕</view>
+    <view class="arrow">›</view>
+  </view>
+</view>
+<view class="slot-warning {{warningSeverity}}" wx:if="{{warning}}">
+  {{warningSeverity === 'error' ? '⚠' : 'ℹ'}} {{warning}}
+</view>
