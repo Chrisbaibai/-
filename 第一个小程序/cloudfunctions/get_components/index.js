@@ -15,6 +15,12 @@ exports.main = async (event) => {
       return getComponentDetail(componentId)
     case 'init':
       return initDatabase()
+    case 'record_search':
+      return recordSearch(event)
+    case 'hot_ranking':
+      return getHotRanking(event.period || 'week')
+    case 'hot_tips':
+      return getHotTips(event.limit || 8)
     default:
       return { success: false, error: '未知操作' }
   }
@@ -125,6 +131,93 @@ async function initDatabase() {
   } catch (e) {
     return { success: false, error: e.message }
   }
+}
+
+// 记录搜索日志
+async function recordSearch(event) {
+  try {
+    const { keyword } = event
+    if (!keyword) return { success: false, error: '关键词不能为空' }
+    await db.collection('search_logs').add({
+      data: {
+        keyword: keyword.trim(),
+        date: formatDate(new Date()),
+        timestamp: new Date()
+      }
+    })
+    return { success: true }
+  } catch (e) {
+    return { success: false, error: e.message }
+  }
+}
+
+// 热榜排行（本周/本月/本年）
+async function getHotRanking(period) {
+  try {
+    const startDate = getStartDate(period)
+    const $ = db.command.aggregate
+    const { list } = await db.collection('search_logs')
+      .aggregate()
+      .match({ date: $.gte(startDate) })
+      .group({
+        _id: '$keyword',
+        count: $.sum(1)
+      })
+      .sort({ count: -1 })
+      .limit(20)
+      .end()
+    const data = list.map(item => ({ keyword: item._id, count: item.count }))
+    return { success: true, data }
+  } catch (e) {
+    return { success: false, error: e.message }
+  }
+}
+
+// 热搜推荐词（今日，无数据回退7天）
+async function getHotTips(limit) {
+  try {
+    const today = formatDate(new Date())
+    const $ = db.command.aggregate
+    let { list } = await db.collection('search_logs')
+      .aggregate()
+      .match({ date: today })
+      .group({
+        _id: '$keyword',
+        count: $.sum(1)
+      })
+      .sort({ count: -1 })
+      .limit(limit)
+      .end()
+
+    // 今日无数据，回退到最近7天
+    if (!list || list.length === 0) {
+      const startDate = getStartDate('week')
+      const result = await db.collection('search_logs')
+        .aggregate()
+        .match({ date: $.gte(startDate) })
+        .group({
+          _id: '$keyword',
+          count: $.sum(1)
+        })
+        .sort({ count: -1 })
+        .limit(limit)
+        .end()
+      list = result.list
+    }
+
+    const data = list.map(item => ({ keyword: item._id, count: item.count }))
+    return { success: true, data }
+  } catch (e) {
+    return { success: false, error: e.message }
+  }
+}
+
+function getStartDate(period) {
+  const d = new Date()
+  if (period === 'week') d.setDate(d.getDate() - 7)
+  else if (period === 'month') d.setDate(d.getDate() - 30)
+  else if (period === 'year') d.setDate(d.getDate() - 365)
+  return formatDate(d)
 }
 
 function formatDate(date) {
