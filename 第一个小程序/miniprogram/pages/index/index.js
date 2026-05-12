@@ -53,5 +53,9 @@ Page({
 
   onSearchTap() {
     wx.navigateTo({ url: '/pages/search/search' })
+  },
+
+  onHotRankingTap() {
+    wx.navigateTo({ url: '/pages/hot-ranking/hot-ranking' })
   }
 })

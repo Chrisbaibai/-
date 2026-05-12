@@ -6,6 +6,8 @@ const slotConfig = [
   { key: 'motherboard', label: '主板', icon: '🔌', category: 'motherboard' },
   { key: 'ram', label: '内存', icon: '💾', category: 'ram' },
   { key: 'storage', label: '硬盘', icon: '💿', category: 'storage' },
+  { key: 'psu', label: '电源', icon: '⚡', category: 'psu' },
+  { key: 'case', label: '机箱', icon: ' ️', category: 'case' },
   { key: 'monitor', label: '显示器', icon: '🖥', category: 'monitor' }
 ]
 
@@ -125,7 +127,8 @@ Page({
       cpu: ['cpu_motherboard'],
       motherboard: ['cpu_motherboard', 'ram_motherboard'],
       ram: ['ram_motherboard'],
-      gpu: ['psu_wattage']
+      gpu: ['psu_wattage'],
+      psu: ['psu_wattage']
     }
     const types = mapping[slotKey] || []
     const w = warnings.find(w => types.includes(w.type))

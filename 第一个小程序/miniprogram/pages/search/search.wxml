@@ -4,6 +4,18 @@
     <view class="search-btn" bindtap="onSearch">搜索</view>
   </view>
 
+  <!-- 热搜推荐 -->
+  <view class="hot-tips" wx:if="{{!searched && hotTips.length > 0}}">
+    <view class="hot-tips-title">热搜推荐</view>
+    <view class="hot-tips-list">
+      <view class="hot-tip-item" wx:for="{{hotTips}}" wx:key="keyword" data-keyword="{{item.keyword}}" bindtap="onHotTipTap">
+        <text class="hot-tip-rank {{index < 3 ? 'hot-rank-top' : ''}}">{{index + 1}}</text>
+        <text class="hot-tip-keyword">{{item.keyword}}</text>
+        <text class="hot-tip-count">{{item.count}}</text>
+      </view>
+    </view>
+  </view>
+
   <view class="results">
     <block wx:if="{{!loading}}">
       <block wx:if="{{results.length > 0}}">

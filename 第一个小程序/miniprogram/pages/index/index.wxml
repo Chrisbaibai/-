@@ -4,6 +4,14 @@
     <view class="search-input-placeholder">搜索配件型号...</view>
   </view>
 
+  <!-- 热榜入口 -->
+  <view class="hot-entry" bindtap="onHotRankingTap">
+    <view class="hot-icon">热</view>
+    <view class="hot-text">热榜</view>
+    <view class="hot-desc">大家都在搜</view>
+    <view class="hot-arrow">›</view>
+  </view>
+
   <!-- 分类 Tab -->
   <category-tabs activeKey="{{activeCategory}}" bind:change="onCategoryChange" />
 

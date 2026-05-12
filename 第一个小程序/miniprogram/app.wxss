@@ -3,6 +3,7 @@ page {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 28rpx;
   color: #333;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .container {

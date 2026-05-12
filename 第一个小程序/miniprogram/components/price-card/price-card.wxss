@@ -12,6 +12,7 @@
 }
 .card-info {
   flex: 1;
+  min-width: 0;
   margin-right: 20rpx;
 }
 .brand-tag {
@@ -29,6 +30,12 @@
   color: #333;
   margin-bottom: 8rpx;
   line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 .specs {
   display: flex;

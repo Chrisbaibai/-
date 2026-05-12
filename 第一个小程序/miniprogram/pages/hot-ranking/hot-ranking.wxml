@@ -1,0 +1,23 @@
+<view class="page">
+  <!-- 时间周期切换 -->
+  <view class="period-bar">
+    <view class="period-btn {{activePeriod === 'week' ? 'active' : ''}}" data-period="week" bindtap="onPeriodChange">本周</view>
+    <view class="period-btn {{activePeriod === 'month' ? 'active' : ''}}" data-period="month" bindtap="onPeriodChange">本月</view>
+    <view class="period-btn {{activePeriod === 'year' ? 'active' : ''}}" data-period="year" bindtap="onPeriodChange">本年</view>
+  </view>
+
+  <!-- 排行列表 -->
+  <view class="ranking-list" wx:if="{{rankingList.length > 0}}">
+    <view class="ranking-item" wx:for="{{rankingList}}" wx:key="keyword" data-keyword="{{item.keyword}}" bindtap="onItemTap">
+      <view class="rank rank-{{index}}">{{index + 1}}</view>
+      <view class="keyword">{{item.keyword}}</view>
+      <view class="count">{{item.count}}次搜索</view>
+    </view>
+  </view>
+
+  <view class="empty-tip" wx:if="{{rankingList.length === 0 && !loading}}">
+    暂无搜索数据
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+</view>
